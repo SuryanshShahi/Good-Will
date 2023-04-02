@@ -4,16 +4,21 @@
 
 .nav-link.active {
   color: rgb(18 211 104 / 84%) !important;
-  border-bottom: 3px solid rgb(18 211 104 / 84%) ;
+  border-bottom: 3px solid rgb(18 211 104 / 84%);
 }
 
-
-.donation-bg{
-    background: url("/Images/hp3-donate-bg-2.jpg") no-repeat;
-    background-size: 100% 100%;
+.donation-bg {
+  background: url("/Images/hp3-donate-bg-2.jpg") no-repeat;
+  background-size: 100% 100%;
 }
 
-.happening-bg{
-    background: url("/Images/hp3-blog-bg.jpg") no-repeat;
-    background-size: 100% 100%;
+.happening-bg {
+  background: url("/Images/hp3-blog-bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
+.slick-slide {
+  @apply max-w-sm md:mx-10 mx-5;
+}
+.slick-list {
+  max-height: 450px !important;
 }

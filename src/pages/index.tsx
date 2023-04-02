@@ -1,13 +1,69 @@
 import { Button } from "@/@common/Button";
+import DonationCard from "@/components/DonationCard";
 import Image from "next/image";
 import { Nav, Navbar, Container, Carousel } from "react-bootstrap";
+import { happeningCards } from "../artifacts/happening";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
+const PrevArrow = (props: { onClick?: () => void }) => {
+  return (
+    <button
+      aria-label="go to prev"
+      className={`absolute -bottom-16 left-[35%] z-50 bg-[#D9D9D9] p-2 hover:bg-[#D9D9D990] md:left-0`}
+      onClick={props.onClick}
+    >
+      <IoIosArrowBack size={25} />
+    </button>
+  );
+};
+const NextArrow = (props: { onClick?: () => void }) => {
+  return (
+    <button
+      aria-label="go to next"
+      className={`absolute -bottom-16 left-[55%] z-50 bg-[#D9D9D9] p-2 hover:bg-[#D9D9D990] md:left-14`}
+      onClick={props.onClick}
+    >
+      <IoIosArrowForward size={25} />
+    </button>
+  );
+};
 
 export default function Home() {
+  var settings = {
+    slidesToShow: 3,
+    swipeToSlide: true,
+    infinite: true,
+    dots: false,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 780,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
+  };
+
   return (
     <>
-      <div className="relative overflow-x-hidden">
+      <div className="relative">
         <div className="absolute z-10">
-          <Navbar className="py-4 w-screen text-sm bg-black" expand="lg">
+          <Navbar className="py-4 w-screen d-lg-block d-none text-sm bg-black" expand="lg">
             <Container>
               <div className="flex">
                 <div className="list-none flex gap-3 text-green-500">
@@ -38,7 +94,7 @@ export default function Home() {
               </div>
             </Container>{" "}
           </Navbar>
-          <Navbar className="my-10" expand="lg">
+          <Navbar className="my-10 d-lg-block d-none" expand="lg">
             <Container className="flex p-0">
               <Image
                 src="/Images/logo-demo-3.png"
@@ -75,8 +131,8 @@ export default function Home() {
               </div>
             </Container>
           </Navbar>
-          <Navbar className="w-screen" expand="lg">
-            <Container className="p-3 bg-white ">
+          <Navbar className="w-screen p-0" expand="lg">
+            <div className="p-3 bg-white mx-auto w-full lg:max-w-[960px]">
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav
@@ -111,7 +167,7 @@ export default function Home() {
                   </NavDropdown> */}
                 </Nav>
               </Navbar.Collapse>
-            </Container>
+            </div>
           </Navbar>
         </div>
 
@@ -130,6 +186,7 @@ export default function Home() {
                 src="/Images/slider-1-item.png"
                 alt="flag"
               />
+              {/* <img src="/Images/slider-1-item.png" alt="flag"/> */}
               <div className=" text-7xl my-3 font-bold">
                 Plants give <span className="text-green-500">Life</span>
               </div>
@@ -148,7 +205,8 @@ export default function Home() {
 
             <Carousel.Caption className="mb-10">
               <div className=" text-7xl mb-3 font-bold">
-                Help Us Save The<span className="text-green-500">Planet</span>
+                Help Us Save The
+                <span className="text-green-500 ml-3">Planet</span>
               </div>
               <p className="text-[23px]">
                 We build strength, stability and self reliance through shelter.
@@ -301,25 +359,34 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="justify-center flex happening-bg">
-          <div className="text-center my-[85px] max-w-2xl">
-            <div className="font-bold text-md text-green-200 opacity-70">
-              GET UPDATED
-            </div>
-            <div className="font-bold text-5xl text-white">Happening Now</div>
-            <div>
-              <Image
-                height={65}
-                width={65}
-                src="/Images/hp3-col-1.png"
-                alt="image"
-                className="h-fit mt-3"
-              />
-              <div className="p-10">
-                  <span></span>
-              </div>
-            </div>
-            <button className="font-[500] text-white px-20 mt-3 text-sm bg-green-400 py-[14px]">
+        <div className="happening-bg pt-28 pb-24">
+          <div className="font-bold text-center mb-3 text-md text-green-200 opacity-70">
+            GET UPDATED
+          </div>
+          <div className="font-bold text-center text-5xl text-white">
+            Happening Now
+          </div>
+          <div className="mb-3 mt-16 sm:container container-fluid">
+            <Slider
+              {...settings}
+              nextArrow={<NextArrow />}
+              prevArrow={<PrevArrow />}
+            >
+              {happeningCards?.map((e) => {
+                return (
+                  <DonationCard
+                    key={e.image}
+                    image={e.image}
+                    date={e.date}
+                    author={e.author}
+                    title={e.title}
+                  />
+                );
+              })}
+            </Slider>
+          </div>
+          <div className="text-center mt-24">
+            <button className="font-medium text-white px-20 mt-3 text-sm bg-green-400 py-[14px]">
               DONATE NOW
             </button>
           </div>
