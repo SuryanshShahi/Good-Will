@@ -6,7 +6,9 @@ export const useNav = () => {
   useEffect(() => {
     const changeNav = () => {
       if (window.scrollY > 215) {
-        setNav("fixed-top !max-w-full");
+        setNav(
+          "fixed-top !max-w-full shadow-[0_0.3rem_0.5rem_rgba(0,0,0,.15)]"
+        );
       } else {
         setNav("");
       }
