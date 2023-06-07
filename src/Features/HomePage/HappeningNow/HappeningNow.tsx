@@ -6,6 +6,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import usehappening from "./views/usehappening";
+import { Button } from "@/@common/Button";
 
 const PrevArrow = (props: { onClick?: () => void }) => {
   return (
@@ -45,10 +46,10 @@ const HappeningNow = () => {
           nextArrow={<NextArrow />}
           prevArrow={<PrevArrow />}
         >
-          {happeningCards?.map((e) => {
+          {happeningCards?.map((e, idx) => {
             return (
               <DonationCard
-                key={e.image}
+                key={idx}
                 image={e.image}
                 date={e.date}
                 author={e.author}
@@ -59,9 +60,7 @@ const HappeningNow = () => {
         </Slider>
       </div>
       <div className="text-center mt-24">
-        <button className="font-medium text-white px-20 mt-3 text-sm bg-green-400 py-[14px]">
-          DONATE NOW
-        </button>
+        <Button className="!py-[14px] !px-20" btnName="DONATE NOW" />
       </div>
     </div>
   );

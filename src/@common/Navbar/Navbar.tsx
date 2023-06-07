@@ -18,7 +18,7 @@ const NavbarComponent = () => {
       >
         <div className="mx-auto flex w-full lg:max-w-[1240px]">
           <div className="flex items-center">
-            <div className="list-none flex gap-3 text-green-500">
+            <div className="list-none flex gap-3 -[#3bcf93]">
               <GrFacebookOption size={16} />
               <RiLinkedinFill size={16} />
               <TiSocialPinterest size={18} />
@@ -71,7 +71,7 @@ const NavbarComponent = () => {
                 Ocean Protected
               </div>
             </div>
-            <Button name="DONATE" />
+            <Button btnName="DONATE" />
           </div>
         </div>
       </Navbar>

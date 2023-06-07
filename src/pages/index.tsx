@@ -1,10 +1,12 @@
-import LandingPageCarousel from "@/Features/HomePage/LandingPageCarousel";
-import SavePlants from "@/Features/HomePage/SavePlants";
-import DonateNow from "@/Features/HomePage/DonateNow";
-import MorePeople from "@/Features/HomePage/MorePeople";
-import HapenningNow from "@/Features/HomePage/HappeningNow/HappeningNow";
 import NavbarComponent from "@/@common/Navbar/Navbar";
 import Footer from "@/@common/Footer/Footer";
+import DonateNow from "@/features/homePage/DonateNow";
+import LandingPageCarousel from "@/features/homePage/LandingPageCarousel";
+import MorePeople from "@/features/homePage/MorePeople";
+import SavePlants from "@/features/homePage/SavePlants";
+import HappeningNow from "@/features/homePage/HappeningNow/HappeningNow";
+import Stats from "@/features/homePage/StatsSection";
+import OurTeam from "@/features/homePage/OurTeam";
 
 export default function Home() {
   return (
@@ -14,8 +16,10 @@ export default function Home() {
       <SavePlants />
       <DonateNow />
       <MorePeople />
-      <HapenningNow />
-      <Footer/>
+      <HappeningNow />
+      <Stats />
+      <OurTeam />
+      <Footer />
     </div>
   );
 }

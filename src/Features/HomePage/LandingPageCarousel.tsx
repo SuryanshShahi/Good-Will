@@ -22,12 +22,12 @@ const LandingPageCarousel = () => {
           />
           {/* <img src="/Images/slider-1-item.png" alt="flag"/> */}
           <div className=" text-7xl my-3 font-bold">
-            Plants give <span className="text-green-500">Life</span>
+            Plants give <span className="text-[#3bcf93]">Life</span>
           </div>
           <p className="text-[23px]">
             We build strength, stability and self reliance through shelter.
           </p>
-          <Button name="DONATE" />
+          <Button btnName="DONATE" />
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -40,13 +40,13 @@ const LandingPageCarousel = () => {
         <Carousel.Caption className="mb-10">
           <div className=" text-7xl mb-3 font-bold">
             Help Us Save The
-            <span className="text-green-500 ml-3">Planet</span>
+            <span className="text-[#3bcf93] ml-3">Planet</span>
           </div>
           <p className="text-[23px]">
             We build strength, stability and self reliance through shelter.
           </p>
 
-          <Button name="DONATE" />
+          <Button btnName="DONATE" />
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

@@ -23,5 +23,10 @@ export const happeningCards = [
     author: "JAMES SMITH",
     title: "Partnering to create a community",
   },
-  
+  {
+    image: "/Images/donation-3.jpg",
+    date: "APRIL 9, 2019",
+    author: "JAMES SMITH",
+    title: "Partnering to create a community",
+  },
 ];

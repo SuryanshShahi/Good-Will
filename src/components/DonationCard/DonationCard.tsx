@@ -12,7 +12,7 @@ const DonationCard = (props: ICard) => {
     <div className="bg-white max-w-sm">
       <img src={props.image} height={217} width={384} alt="happening" />
       <div className="p-5">
-        <div className="flex items-center text-green-500 font-medium">
+        <div className="flex items-center tex-[#3bcf93] font-medium">
           <div>{props.date}</div>
           <span className="mx-2 text-xl">.</span>
           <div>{props.author}</div>

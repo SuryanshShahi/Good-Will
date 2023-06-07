@@ -12,7 +12,7 @@ const MorePeople = () => {
           alt="image"
         />
         <div className="px-[20px]">
-          <div className="font-bold  text-4xl mb-6 text-green-500">
+          <div className="font-bold  text-4xl mb-6 text-[#3bcf93]">
             More People<br></br>More impact
           </div>
           <div className="pt-1 bg-black w-7 my-[20px]"></div>
@@ -28,7 +28,7 @@ const MorePeople = () => {
           <div className="font-bold text-gray-400 text-sm mb-6">
             GET INVOLVED WITH US
           </div>
-          <div className="font-bold  text-4xl mb-6 text-green-500">
+          <div className="font-bold  text-4xl mb-6 text-[#3bcf93]">
             Let’s Protect The Future
           </div>
           <div className="pt-1 bg-black w-7 my-[20px]"></div>

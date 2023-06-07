@@ -16,9 +16,19 @@
   background: url("/Images/hp3-blog-bg.jpg") no-repeat;
   background-size: 100% 100%;
 }
+.ourTeam-bg {
+  background: url("/Images/hp3-personnel-bg.jpg") no-repeat;
+  background-size: 100% 100%;
+}
 .slick-slide {
   @apply max-w-sm md:mx-10 mx-5;
 }
 .slick-list {
   max-height: 450px !important;
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding-inline: 20px !important;
+  }
 }

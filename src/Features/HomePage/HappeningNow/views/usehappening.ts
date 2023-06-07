@@ -1,10 +1,8 @@
-import React from "react";
-
 const usehappening = () => {
   var settings = {
     slidesToShow: 3,
     swipeToSlide: true,
-    infinite: true,
+    infinite: false,
     dots: false,
     responsive: [
       {
