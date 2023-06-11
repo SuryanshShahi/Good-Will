@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: jost;
+  src: url("../../public/Jost-VariableFont_wght.ttf");
+}
+* {
+  font-family: jost;
+}
 .nav-link.active {
   color: rgb(18 211 104 / 84%) !important;
   border-bottom: 3px solid rgb(18 211 104 / 84%);
@@ -20,15 +27,27 @@
   background: url("/Images/hp3-personnel-bg.jpg") no-repeat;
   background-size: 100% 100%;
 }
-.slick-slide {
-  @apply max-w-sm md:mx-10 mx-5;
-}
+
 .slick-list {
-  max-height: 450px !important;
+  max-height: 510px !important;
 }
 
+.slick-slide {
+  min-width: 384px !important;
+  width: 100%;
+  @apply sm:mx-10;
+}
 @media (max-width: 640px) {
-  .footer {
-    padding-inline: 20px !important;
+  .slick-slide {
+    margin-inline: 20px !important;
   }
+}
+@media (max-width: 500px) {
+  .slick-slide {
+    margin-inline: 0px !important;
+  }
+}
+
+.MuiInputBase-root {
+  border-radius: 0 !important;
 }

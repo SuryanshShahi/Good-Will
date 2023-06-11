@@ -3,14 +3,14 @@ import Stats from "@/components/DonationCard/Stats";
 
 const StatsSection = () => {
   return (
-    <>
-      <div className="flex items-center justify-between container py-16">
+    <div className="container">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-10 py-16">
         <Stats count="1M" text="Monthly Visitors" />
         <Stats count="20M" text="Volunteers Connected" />
         <Stats count="80" text="Countries Worldwide" />
         <Stats count="2M" text="Volunteers Needed" />
       </div>
-      <div className="grid md:grid-cols-2 grid-cols-1 lg:px-[60px] p-5">
+      <div className="grid md:grid-cols-2 grid-cols-1 py-5">
         <div>
           <div className="text-[#a9a9a9] mb-2 text-sm font-bold">
             HELP US STOP THE PROBLEM
@@ -31,7 +31,7 @@ const StatsSection = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

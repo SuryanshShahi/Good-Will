@@ -1,0 +1,28 @@
+{
+  "name": "payment-backend",
+  "version": "1.0.0",
+  "description": "Payment with razorpay backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Anirudh",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.3",
+    "nodemailer": "^6.9.3",
+    "nodemon": "^2.0.22",
+    "paytmchecksum": "^1.5.0",
+    "razorpay": "^2.0.6",
+    "shortid": "^2.2.16"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.2"
+  }
+}

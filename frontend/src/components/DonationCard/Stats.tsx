@@ -6,7 +6,7 @@ interface IStats {
 
 const Stats = (props: IStats) => {
   return (
-    <div className="flex flex-col items-center relative">
+    <div className="relative text-center flex flex-col items-center">
       <div className="z-[1] text-6xl font-extrabold mb-3">{props.count}</div>
       <div className="z-[1] text-lg">{props.text}</div>
       <Image

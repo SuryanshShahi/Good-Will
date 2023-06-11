@@ -1,23 +1,23 @@
 import NavbarComponent from "@/@common/Navbar/Navbar";
 import Footer from "@/@common/Footer/Footer";
-import DonateNow from "@/features/homePage/DonateNow";
-import LandingPageCarousel from "@/features/homePage/LandingPageCarousel";
-import MorePeople from "@/features/homePage/MorePeople";
-import SavePlants from "@/features/homePage/SavePlants";
-import HappeningNow from "@/features/homePage/HappeningNow/HappeningNow";
-import Stats from "@/features/homePage/StatsSection";
-import OurTeam from "@/features/homePage/OurTeam";
+import DonateNow from "@/Features/HomePage/DonateNow";
+import HappeningNow from "@/Features/HomePage/HappeningNow/HappeningNow";
+import LandingPageCarousel from "@/Features/HomePage/LandingPageCarousel";
+import MorePeople from "@/Features/HomePage/MorePeople";
+import OurTeam from "@/Features/HomePage/OurTeam";
+import SavePlants from "@/Features/HomePage/SavePlants";
+import StatsSection from "@/Features/HomePage/StatsSection";
 
 export default function Home() {
   return (
     <div className="relative">
-      <NavbarComponent />
+      <NavbarComponent isBg={0} />
       <LandingPageCarousel />
       <SavePlants />
       <DonateNow />
       <MorePeople />
       <HappeningNow />
-      <Stats />
+      <StatsSection />
       <OurTeam />
       <Footer />
     </div>

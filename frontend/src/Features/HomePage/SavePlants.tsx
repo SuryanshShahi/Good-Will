@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 
 const SavePlants = () => {
   return (
@@ -30,7 +29,7 @@ const SavePlants = () => {
             className="h-fit mt-3"
           />
           <div>
-            <div className="text-[29px] mb-2 font-bold">Save Plants</div>
+            <div className="text-[29px] mb-2 font-bold">Save Water</div>
             <div className="leading-8">
               Charity law within the UK varies among England and Wales, Scotland
               and North ern Ireland, but the fundamental
@@ -46,7 +45,7 @@ const SavePlants = () => {
             className="h-fit mt-3"
           />
           <div>
-            <div className="text-[29px] mb-2 font-bold">Save Plants</div>
+            <div className="text-[29px] mb-2 font-bold">Save Animals</div>
             <div className="leading-8">
               Charity law within the UK varies among England and Wales, Scotland
               and North ern Ireland, but the fundamental

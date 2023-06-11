@@ -11,8 +11,8 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <>
-      <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-5 gap-20 py-20 lg:px-20 sm:px-10 text-white bg-neutral-800 footer">
+    <div className="footer text-white bg-neutral-800">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-5 gap-20 py-20 container">
         <div>
           <Image
             src="/Images/footer-logo.png"
@@ -83,7 +83,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex">
               <Image
-                src="/Images/donation-1.jpg"
+                src="/Images/train.jpeg"
                 height={80}
                 width={80}
                 alt="footer-item1"
@@ -101,7 +101,7 @@ const Footer = () => {
             </div>
             <div className="flex">
               <Image
-                src="/Images/donation-1.jpg"
+                src="/Images/earthquake.jpeg"
                 height={80}
                 width={80}
                 alt="footer-item1"
@@ -152,7 +152,7 @@ const Footer = () => {
           Copyright 2020 Chariti Theme, All Right Reserved
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

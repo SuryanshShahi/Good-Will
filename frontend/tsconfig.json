@@ -19,6 +19,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/Features/HomePage/DonateNow.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/Features/HomePage/DonateNow.js", "src/Features/test.js", "src/Features/HomePage/views/useHomePage.js"],
   "exclude": ["node_modules"]
 }

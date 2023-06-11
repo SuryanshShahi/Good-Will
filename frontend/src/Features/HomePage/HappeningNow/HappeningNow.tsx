@@ -34,33 +34,35 @@ const HappeningNow = () => {
   const { settings } = usehappening();
   return (
     <div className="happening-bg pt-28 pb-24">
-      <div className="font-bold text-center mb-3 text-md text-green-200 opacity-70">
-        GET UPDATED
-      </div>
-      <div className="font-bold text-center text-5xl text-white">
-        Happening Now
-      </div>
-      <div className="mb-3 mt-16 sm:container container-fluid">
-        <Slider
-          {...settings}
-          nextArrow={<NextArrow />}
-          prevArrow={<PrevArrow />}
-        >
-          {happeningCards?.map((e, idx) => {
-            return (
-              <DonationCard
-                key={idx}
-                image={e.image}
-                date={e.date}
-                author={e.author}
-                title={e.title}
-              />
-            );
-          })}
-        </Slider>
-      </div>
-      <div className="text-center mt-24">
-        <Button className="!py-[14px] !px-20" btnName="DONATE NOW" />
+      <div className="container">
+        <div className="font-bold text-center mb-3 text-md text-green-200 opacity-70">
+          GET UPDATED
+        </div>
+        <div className="font-bold text-center text-5xl text-white">
+          Happening Now
+        </div>
+        <div className="mb-3 mt-16 sm:container container-fluid">
+          <Slider
+            {...settings}
+            nextArrow={<NextArrow />}
+            prevArrow={<PrevArrow />}
+          >
+            {happeningCards?.map((e, idx) => {
+              return (
+                <DonationCard
+                  key={idx}
+                  image={e.image}
+                  date={e.date}
+                  author={e.author}
+                  title={e.title}
+                />
+              );
+            })}
+          </Slider>
+        </div>
+        <div className="text-center mt-24">
+          <Button className="!py-[14px] !px-20" btnName="DONATE NOW" />
+        </div>
       </div>
     </div>
   );
