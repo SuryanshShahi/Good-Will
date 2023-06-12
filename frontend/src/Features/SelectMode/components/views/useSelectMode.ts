@@ -27,6 +27,11 @@ const useSelectMode = () => {
     );
   };
   useEffect(() => {}, [user]);
+
+
+  useEffect(() => {
+    localStorage.setItem("list1", JSON.stringify(user));
+  }, [user]);
   return { user, setUser, handleInputs, handleSubmit };
 };
 

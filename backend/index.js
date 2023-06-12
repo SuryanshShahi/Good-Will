@@ -2,7 +2,6 @@ require("dotenv").config();
 
 const app = require("express")();
 const path = require("path");
-const nodemailer = require("nodemailer");
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -12,6 +11,10 @@ const cors = require("cors");
 
 const shortid = require("shortid");
 const Razorpay = require("razorpay");
+
+const bcrypt = require("bcrypt");
+const UserProfile = require("./model/userProfileSchema");
+const authenticate = require("./middleware/authenticate");
 
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_ID_KEY,
@@ -57,28 +60,6 @@ app.post("/razorpay", async (req, res) => {
       currency: response.currency,
       balance,
     });
-    var transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "suryansh5476shahi@gmail.com",
-        pass: "thebeast@06",
-      },
-    });
-
-    var mailOptions = {
-      from: "suryansh5476shahi@gmail.com",
-      to: email,
-      subject: "Sending Email using Node.js",
-      text: "That was easy!",
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
 
     await user.save();
     res.status(201).json({ message: "user registered successfully" });
@@ -90,10 +71,7 @@ app.post("/razorpay", async (req, res) => {
 // ---------------------------------------------------
 // ---------------------------------------------------
 // ---------------------------------------------------
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const UserProfile = require("./model/userProfileSchema");
-const authenticate = require("./middleware/authenticate");
+
 app.post("/login", async (req, res) => {
   try {
     let token;
@@ -108,12 +86,10 @@ app.post("/login", async (req, res) => {
       token = await userExist.generateAuthToken();
       console.log(token);
 
-      res.cookie("jwtoken", token),
-        {
-          expires: new Date(Date.now() + 25892000000),
-          httpOnly: true,
-        };
-
+      res.cookie(("jwtoken", token), {
+        expires: new Date(Date.now() + 25892000000),
+        httpOnly: true,
+      });
       if (!isMatch) {
         res.status(400).json({ message: "Invalid Credentials" });
       } else {
@@ -157,7 +133,7 @@ app.post("/signup", async (req, res) => {
 });
 
 app.get("/users", authenticate, (req, res) => {
-  // User.find().then((data) => {
+  // UserProfile.find("").then((data) => {
   //   res.status(201).json(data);
   // });
   res.send(req.rootUser);

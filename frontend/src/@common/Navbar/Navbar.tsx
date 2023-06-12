@@ -14,24 +14,24 @@ import axios from "axios";
 const NavbarComponent = ({ isBg, hide }: { isBg?: number; hide?: boolean }) => {
   const { nav, setNav } = useNav();
   const [rootUser, setRootUser] = useState();
-  const getUserData = () => {
-    // const res = await fetch("http://localhost:4000/users", {
-    //   method: "GET",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json",
-    //   },
-    //   // credentials: "include",
-    // });
-    axios
-      .get("http://localhost:4000/users")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => console.log(err));
-    // const data = await res.json();
-    // setRootUser(data);
-    // console.log(data);
+  const getUserData = async () => {
+    const res = await fetch("http://localhost:4000/users", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      // credentials: "include",
+    });
+    // axios
+    //   .get("https://handbook-backend.onrender.com/users")
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => console.log(err));
+    const data = await res.json();
+    setRootUser(data);
+    console.log(data);
   };
   useEffect(() => {
     getUserData();

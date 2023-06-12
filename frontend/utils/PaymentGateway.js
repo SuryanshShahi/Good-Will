@@ -1,5 +1,14 @@
 import emailjs from "@emailjs/browser";
 async function displayRazorpay(amount, fullname, email, phone, balance) {
+  const getEditor = () => {
+    let list1 = localStorage.getItem("list1");
+    if (list1) {
+      return JSON.parse(list1);
+    } else {
+      return [];
+    }
+  };
+  console.log(getEditor().fname);
   const date = new Date();
   const months = [
     "January",
@@ -47,21 +56,21 @@ async function displayRazorpay(amount, fullname, email, phone, balance) {
     handler: function (res) {
       alert("PAYMENT ID ::" + res.razorpay_payment_id);
       alert("ORDER ID :: " + res.razorpay_order_id);
-
+      const emailData = {
+        user_email: getEditor().email,
+        name: getEditor().fname + " " + getEditor().lname,
+        message: getEditor().message,
+      };
       emailjs
-        .sendForm(
-          "service_u8vj1ke",
-          "template_dwlucdq",
-          {
-            user_email: "suryansh06shahi@gmail.com",
-            message: "hello",
-            name: "Suryansh",
-          },
-          "lCP5fKsL73HkyO8v6"
+        .send(
+          "service_rbuflth",
+          "template_47pjvno",
+          emailData,
+          "DVyNq_VqueaTqkXlE"
         )
         .then(
           (res) => {
-            console.log(res);
+            console.log(res, "sent");
           },
           (err) => {
             console.log(err);
@@ -69,12 +78,11 @@ async function displayRazorpay(amount, fullname, email, phone, balance) {
         );
     },
     prefill: {
-      name: "Anirudh Jwala",
+      name: "Suryansh",
       email: "suryansh@gmail.com",
       contact: "9999999999",
     },
   };
-
 
   const paymentObject = new window.Razorpay(options);
   paymentObject.open();

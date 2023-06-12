@@ -1,10 +1,12 @@
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
+  const router = useRouter();
   const PostData = async (e: any) => {
     e.preventDefault();
     console.log(email);
@@ -14,10 +16,15 @@ const Login = () => {
       .post("http://localhost:4000/login", {
         email,
         password,
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
       })
       .then((res) => {
-        if (res.status === 201) {
-          window.location.href = "/";
+        if (res.status === 201 || res.status === 200) {
+          router.push("/");
           console.log("Login Successful");
         } else {
           console.log("Invalid Credentials");

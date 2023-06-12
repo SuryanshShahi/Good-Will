@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Web3 from "web3";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { loadContract } from "../../../../utils/load-contract";
 import { UserContext } from "@/contexts/UserContext";
-
+import emailjs from "@emailjs/browser";
 const useHomePage = (inputId) => {
   const [web3api, setweb3api] = useState({
     provider: null,
@@ -66,17 +66,46 @@ const useHomePage = (inputId) => {
   // }, [input]);
   var amount = (input ? input : btnActive) * 0.0000096;
 
+  const getEditor = () => {
+    let list1 = localStorage.getItem("list1");
+    if (list1) {
+      return JSON.parse(list1);
+    } else {
+      return [];
+    }
+  };
+
   const transferFund = async () => {
     const { contract, web3 } = web3api;
     await contract.transfer({
       from: account,
       value: web3.utils.toWei(`${amount}`, "ether"),
     });
-
+    const emailData = {
+      user_email: getEditor().email,
+      name: getEditor().fname + " " + getEditor().lname,
+      message: getEditor().message,
+    };
+    console.log(emailData);
+    emailjs
+      .send(
+        "service_rbuflth",
+        "template_47pjvno",
+        emailData,
+        "DVyNq_VqueaTqkXlE"
+      )
+      .then(
+        (res) => {
+          console.log(res, "sent");
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
     reloadPage();
-    const acc = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
+    // const acc = await window.ethereum.request({
+    //   method: "eth_requestAccounts",
+    // });
   };
 
   useEffect(() => {
