@@ -7,7 +7,7 @@ import { UserContext } from "@/contexts/UserContext";
 import Form from "./Form";
 
 const Banner = () => {
-  // const { btnActive, input, transferFund } = useHomePage();
+  const { balance } = useHomePage();
   // const { userData, setUserData } = useContext(UserContext);
 
   // const { user, handleInputs, handleSubmit } = useSelectMode();
@@ -29,7 +29,7 @@ const Banner = () => {
             Chariti Foundation
           </div>
           <div className="text-sm font-extrabold mt-4 text-[#bdedd3]">
-            $12,470.00
+          ₹ {(balance * 104327.87).toFixed(2)}
           </div>
           <div className="w-full bg-white h-1.5 mt-2">
             <div className=" bg-[#4d5dd4] h-1.5 w-[41%]"></div>

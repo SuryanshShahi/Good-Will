@@ -2,6 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState(``);
@@ -25,6 +26,12 @@ const Login = () => {
       .then((res) => {
         if (res.status === 201 || res.status === 200) {
           router.push("/");
+          toast.success("Login Successful !", {
+            position: toast.POSITION.TOP_RIGHT,
+            className: "toast-login",
+            hideProgressBar: true,
+            autoClose: false,
+          });
           console.log("Login Successful");
         } else {
           console.log("Invalid Credentials");

@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import usehappening from "./views/usehappening";
 import { Button } from "@/@common/Button";
+import Link from "next/link";
 
 const PrevArrow = (props: { onClick?: () => void }) => {
   return (
@@ -61,7 +62,9 @@ const HappeningNow = () => {
           </Slider>
         </div>
         <div className="text-center mt-24">
-          <Button className="!py-[14px] !px-20" btnName="DONATE NOW" />
+          <Link href="/selectMode">
+            <Button className="!py-[14px] !px-20" btnName="DONATE NOW" />
+          </Link>
         </div>
       </div>
     </div>

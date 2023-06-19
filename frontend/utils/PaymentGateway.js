@@ -1,4 +1,5 @@
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 async function displayRazorpay(amount, fullname, email, phone, balance) {
   const getEditor = () => {
     let list1 = localStorage.getItem("list1");
@@ -54,12 +55,16 @@ async function displayRazorpay(amount, fullname, email, phone, balance) {
     image: "http://localhost:4000/logo.png",
     order_id: data.id,
     handler: function (res) {
-      alert("PAYMENT ID ::" + res.razorpay_payment_id);
-      alert("ORDER ID :: " + res.razorpay_order_id);
+      toast.success("Payment Successful !", {
+        position: toast.POSITION.TOP_RIGHT,
+        className: "toast-login",
+        hideProgressBar: true,
+      });
       const emailData = {
         user_email: getEditor().email,
         name: getEditor().fname + " " + getEditor().lname,
         message: getEditor().message,
+        amount: amount,
       };
       emailjs
         .send(

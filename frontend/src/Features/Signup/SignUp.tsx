@@ -1,7 +1,10 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
+  const router = useRouter();
   const [user, setUser] = useState({
     fname: "",
     lname: "",
@@ -23,7 +26,7 @@ const SignUp = () => {
 
     const { fname, lname, email, mobile, password, cpassword } = user;
     console.log(user);
-    const res = await fetch("/signup1", {
+    const res = await fetch("http://localhost:4000/signup", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -42,8 +45,13 @@ const SignUp = () => {
       console.log("Email already exists");
     } else if (res.status === 401) {
       console.log("Password Didn't Match");
-    } else if (res.status === 201) {
-      window.location.href = "/login";
+    } else if (res.status === 201 || res.status === 200) {
+      router.push("/login");
+      toast.success("SignUp Successful !", {
+        position: toast.POSITION.TOP_RIGHT,
+        className: "toast-login",
+        hideProgressBar: true,
+      });
       console.log("SignUp Successful");
     } else {
       console.log("Invalid Credentials");

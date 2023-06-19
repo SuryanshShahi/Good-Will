@@ -2,9 +2,8 @@ import { Button } from "@/@common/Button";
 import useHomePage from "@/Features/HomePage/views/useHomePage";
 import { TextField } from "@mui/material";
 import Image from "next/image";
-import displayRazorpay from "utils/PaymentGateway";
-import useSelectMode from "./views/useSelectMode";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { UserContext } from "@/contexts/UserContext";
 const PaymentMode = () => {
   const {
     handleChange,
@@ -16,7 +15,9 @@ const PaymentMode = () => {
     payementMethod,
     setPayementMethod,
     transferFund,
+    balance,
   } = useHomePage();
+  const { userData, setUserData } = useContext(UserContext);
   return (
     <div className="bg-white sm:p-12 p-6 lg:ml-auto mx-auto max-w-md shadow-xl duration-500">
       <div className="text-center text-xl font-bold mb-3">
@@ -30,7 +31,7 @@ const PaymentMode = () => {
             "bg-transparent !border-[#3bcf93] !text-[#3bcf93]"
           }`}
           onclick={() => {
-            setActive(500), handleChange(null);
+            handleChange(null), setActive(500);
           }}
         />
         <Button
@@ -40,7 +41,7 @@ const PaymentMode = () => {
             "bg-transparent !border-[#3bcf93] !text-[#3bcf93]"
           }`}
           onclick={() => {
-            setActive(1000), handleChange(null);
+            handleChange(null), setActive(1000);
           }}
         />
         <Button
@@ -50,7 +51,7 @@ const PaymentMode = () => {
             "bg-transparent !border-[#3bcf93] !text-[#3bcf93]"
           }`}
           onclick={() => {
-            setActive(2000), handleChange(null);
+            handleChange(null), setActive(2000);
           }}
         />
         <Button
@@ -60,7 +61,7 @@ const PaymentMode = () => {
             "bg-transparent !border-[#3bcf93] !text-[#3bcf93]"
           }`}
           onclick={() => {
-            setActive(4000), handleChange(null);
+            handleChange(null), setActive(4000);
           }}
         />
       </div>
@@ -70,6 +71,7 @@ const PaymentMode = () => {
         variant="standard"
         color="success"
         size="small"
+        value={userData.razorpayAmount}
         className="text-md w-full"
         inputProps={{
           inputMode: "numeric",
@@ -203,7 +205,7 @@ const PaymentMode = () => {
         <Button
           className="w-full !py-[14px] sm:mb-4 mb-[40px]"
           btnName="DONATE NOW"
-          onclick={transferFund}
+          onclick={()=>transferFund()}
         />
       )}
     </div>

@@ -4,6 +4,9 @@ import detectEthereumProvider from "@metamask/detect-provider";
 import { loadContract } from "../../../../utils/load-contract";
 import { UserContext } from "@/contexts/UserContext";
 import emailjs from "@emailjs/browser";
+import axios from "axios";
+import { toast } from "react-toastify";
+import useSelectMode from "@/Features/SelectMode/components/views/useSelectMode";
 const useHomePage = (inputId) => {
   const [web3api, setweb3api] = useState({
     provider: null,
@@ -18,7 +21,6 @@ const useHomePage = (inputId) => {
   const [payBtnActive, setPayBtnActive] = useState(1);
   const [payementMethod, setPayementMethod] = useState(1);
   const [input, setInput] = useState(0);
-
   const reloadPage = () => setReload(!reload);
   useEffect(() => {
     const loadBalance = async () => {
@@ -59,11 +61,11 @@ const useHomePage = (inputId) => {
   const handleChange = (value) => {
     setInput(value);
   };
-  // useEffect(() => {
-  //   if (!input) {
-  //     document.getElementById(inputId).value = 0;
-  //   }
-  // }, [input]);
+  useEffect(() => {
+    if (!input) {
+      document.getElementById("standard-basic").value = null;
+    }
+  }, [input]);
   var amount = (input ? input : btnActive) * 0.0000096;
 
   const getEditor = () => {
@@ -77,16 +79,62 @@ const useHomePage = (inputId) => {
 
   const transferFund = async () => {
     const { contract, web3 } = web3api;
+    console.log(input ? input : btnActive, "hhhhhhhh");
     await contract.transfer({
       from: account,
       value: web3.utils.toWei(`${amount}`, "ether"),
     });
     const emailData = {
       user_email: getEditor().email,
+      phone: getEditor().phone,
       name: getEditor().fname + " " + getEditor().lname,
       message: getEditor().message,
+      amount: "₹" + input ? input : btnActive,
     };
     console.log(emailData);
+
+    const date = new Date();
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const txnDate =
+      date.getDate() +
+      " " +
+      months[date.getMonth() + 1] +
+      ", " +
+      date.getFullYear();
+    const txnTime = date.getTime();
+    const email = emailData.user_email;
+    const fullname = emailData.name;
+    const phone = emailData.phone;
+    await fetch("http://localhost:4000/razorpay", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        amount: input ? input : btnActive,
+        txnDate,
+        txnTime,
+        fullname,
+        email,
+        phone,
+        balance: (balance * 104327.87).toFixed(2),
+      }),
+    })
+      .then((t) => console.log(t, "i m here"))
+      .catch((err) => console.log(err));
+
     emailjs
       .send(
         "service_rbuflth",
@@ -102,6 +150,11 @@ const useHomePage = (inputId) => {
           console.log(err);
         }
       );
+    toast.success("Payment Successful !", {
+      position: toast.POSITION.TOP_RIGHT,
+      className: "toast-login",
+      hideProgressBar: true,
+    });
     reloadPage();
     // const acc = await window.ethereum.request({
     //   method: "eth_requestAccounts",
@@ -110,10 +163,12 @@ const useHomePage = (inputId) => {
 
   useEffect(() => {
     setUserData({
+      razorpayAmount: input,
       btnActive: btnActive,
       totalBalance: (balance * 104327.87).toFixed(2),
     });
-  }, [btnActive]);
+  }, [btnActive, input]);
+
   return {
     account,
     setAccount,

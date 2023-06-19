@@ -5,6 +5,7 @@ export const UserContext = createContext<any>({
     btnActive: 500,
     totalBalance: 0,
     user: {},
+    razorpayAmount: "",
   },
   setUserData: () => {},
 });

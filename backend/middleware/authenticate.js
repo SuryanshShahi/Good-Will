@@ -1,11 +1,12 @@
 // const User = require("./model/userSchema");
 const jwt = require("jsonwebtoken");
 const User = require("../model/userProfileSchema");
-
+const LocalStorage = require("node-localstorage").LocalStorage;
+const localStorage = new LocalStorage("./scratch");
 const Authenticate = async (req, res, next) => {
-  console.log(req.cookies, ">>>>>>>>>>>>>>");
+  console.log(localStorage.getItem("jwtoken"), ">>>>>>>>>>>>>>");
   try {
-    const token = req.cookies.jwtoken;
+    const token = localStorage.getItem("jwtoken");
     const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
     const rootUser = await User.findOne({
       _id: verifyToken._id,

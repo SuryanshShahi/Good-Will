@@ -67,10 +67,36 @@ app.post("/razorpay", async (req, res) => {
     console.log(error);
   }
 });
+app.post("/blockchain", async (req, res) => {
+  const { amount, txnDate, txnTime, fullname, email, phone, balance } =
+    req.body;
+  try {
+    const user = new Payment({
+      amount: amount,
+      txnDate,
+      txnTime,
+      name: fullname,
+      email: email,
+      phone: phone,
+      paymentId: 1,
+      receipt: shortid.generate(),
+      currency: "INR",
+      balance: balance,
+    });
+
+    await user.save();
+    res.status(201).json({ message: "user registered successfully" });
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 // ---------------------------------------------------
 // ---------------------------------------------------
 // ---------------------------------------------------
+const LocalStorage = require("node-localstorage").LocalStorage;
+const localStorage = new LocalStorage("./scratch");
+const fs = require("fs");
 
 app.post("/login", async (req, res) => {
   try {
@@ -85,11 +111,12 @@ app.post("/login", async (req, res) => {
       const isMatch = await bcrypt.compare(password, userExist.password);
       token = await userExist.generateAuthToken();
       console.log(token);
+      localStorage.setItem("jwtoken", token);
+      // res.cookie(("jwtoken", token), {
+      //   expires: new Date(Date.now() + 25892000000),
+      //   httpOnly: true,
+      // });
 
-      res.cookie(("jwtoken", token), {
-        expires: new Date(Date.now() + 25892000000),
-        httpOnly: true,
-      });
       if (!isMatch) {
         res.status(400).json({ message: "Invalid Credentials" });
       } else {
@@ -142,6 +169,20 @@ app.get("/payments", async (req, res) => {
   const mydata = await Payment.find({});
 
   res.status(200).json({ mydata });
+});
+
+app.get("/logout", (req, res) => {
+  console.log("#######");
+  const filePath = "./scratch/jwtoken"; // Path to the file containing the token
+
+  fs.writeFile(filePath, "", "utf8", (err) => {
+    if (err) {
+      console.error("Error writing to the file:", err);
+      return;
+    }
+    console.log("File emptied successfully!");
+  });
+  res.status(200).send("User Logged Out !");
 });
 
 app.listen(4000, () => {

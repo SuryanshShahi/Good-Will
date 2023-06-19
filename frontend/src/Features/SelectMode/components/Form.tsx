@@ -5,9 +5,9 @@ import React, { useContext } from "react";
 import useSelectMode from "./views/useSelectMode";
 
 const Form = () => {
-  const { btnActive, input, transferFund } = useHomePage();
+  const { btnActive, input, transferFund, balance } = useHomePage();
   const { userData, setUserData } = useContext(UserContext);
-
+  console.log(userData, "asddsdsdasd");
   const { user, handleInputs, handleSubmit } = useSelectMode();
   return (
     <div className="sm:p-10 p-[20px]">
@@ -16,7 +16,11 @@ const Form = () => {
         id="form"
         onSubmit={(e) => {
           e.preventDefault(),
-            handleSubmit(input, userData.btnActive, userData.totalBalance);
+            handleSubmit(
+              userData.razorpayAmount,
+              userData.btnActive,
+              (balance * 104327.87).toFixed(2)
+            );
         }}
         className="grid sm:grid-cols-2 mt-8 grid-cols-1 gap-5 place-items-center"
       >

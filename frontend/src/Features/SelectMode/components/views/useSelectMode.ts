@@ -17,17 +17,18 @@ const useSelectMode = () => {
 
     setUser({ ...user, [name]: value });
   };
-  const handleSubmit = (input: number, btnActive: number, balance: number) => {
+  const handleSubmit = (input: number, btnActive: number, balance: any) => {
+    console.log(input, btnActive, "sadasdDs");
+
     displayRazorpay(
       input ? input : btnActive,
       user.fname + " " + user.lname,
       user.email,
       user.phone,
-      "₹ " + balance
+      "₹ " + (balance + input)
     );
   };
   useEffect(() => {}, [user]);
-
 
   useEffect(() => {
     localStorage.setItem("list1", JSON.stringify(user));

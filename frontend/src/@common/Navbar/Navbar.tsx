@@ -15,23 +15,23 @@ const NavbarComponent = ({ isBg, hide }: { isBg?: number; hide?: boolean }) => {
   const { nav, setNav } = useNav();
   const [rootUser, setRootUser] = useState();
   const getUserData = async () => {
-    const res = await fetch("http://localhost:4000/users", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      // credentials: "include",
-    });
-    // axios
-    //   .get("https://handbook-backend.onrender.com/users")
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => console.log(err));
-    const data = await res.json();
-    setRootUser(data);
-    console.log(data);
+    // const res = await fetch("http://localhost:4000/users", {
+    //   method: "GET",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json",
+    //   },
+    //   credentials: "include",
+    // });
+    axios
+      .get("http://localhost:4000/users")
+      .then((res) => {
+        console.log(res.data);
+        setRootUser(res.data);
+      })
+      .catch((err) => console.log(err));
+    // const data = await res.json();
+    // console.log(data);
   };
   useEffect(() => {
     getUserData();
@@ -70,7 +70,7 @@ const NavbarComponent = ({ isBg, hide }: { isBg?: number; hide?: boolean }) => {
               Become A Volunteer
             </li>
             |<li className="hover:text-gray-300 cursor-pointer">Contact Us</li>|
-            {true ? (
+            {!rootUser ? (
               <>
                 <Link
                   href="/login"
@@ -89,7 +89,7 @@ const NavbarComponent = ({ isBg, hide }: { isBg?: number; hide?: boolean }) => {
                   href="/profile"
                   className="ml-4 text-gray-300 cursor-pointer"
                 >
-                  Login
+                  Profile
                 </Link>
                 <Link href="/logout" className="text-gray-300 cursor-pointer">
                   Logout
@@ -133,7 +133,9 @@ const NavbarComponent = ({ isBg, hide }: { isBg?: number; hide?: boolean }) => {
                 Ocean Protected
               </div>
             </div>
-            <Button btnName="DONATE" />
+            <Link href="/selectMode">
+              <Button btnName="DONATE" />
+            </Link>
           </div>
         </div>
       </Navbar>

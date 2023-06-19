@@ -1,5 +1,6 @@
 import { Button } from "@/@common/Button";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { Carousel } from "react-bootstrap";
 
@@ -26,7 +27,9 @@ const LandingPageCarousel = () => {
           <p className="text-[23px]">
             We build strength, stability and self reliance through shelter.
           </p>
-          <Button btnName="DONATE" />
+          <Link href="/selectMode">
+            <Button btnName="DONATE" />
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -52,7 +55,10 @@ const LandingPageCarousel = () => {
             We build strength, stability and self reliance through shelter.
           </p>
 
-          <Button btnName="DONATE" />
+          <Link href="/selectMode">
+            {" "}
+            <Button btnName="DONATE" />
+          </Link>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

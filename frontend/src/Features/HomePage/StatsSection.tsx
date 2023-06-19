@@ -1,5 +1,7 @@
 import { Button } from "@/@common/Button";
 import Stats from "@/components/DonationCard/Stats";
+import Image from "next/image";
+import Link from "next/link";
 
 const StatsSection = () => {
   return (
@@ -26,9 +28,20 @@ const StatsSection = () => {
             the turn
           </p>
           <div className="space-x-2 mt-4">
-            <Button btnName="DONATE NOW" className="!px-7 !py-[10px]" />
+            <Link href="/selectMode">
+              <Button btnName="DONATE NOW" className="!px-7 !py-[10px]" />
+            </Link>
             <Button btnName="VOLUNTEER" className="!px-7 !py-[10px]" />
           </div>
+        </div>
+        <div>
+          <Image
+            alt=""
+            height={368}
+            width={580}
+            src="/Images/help.jpeg"
+            className="w-full max-w-[580px] ml-auto"
+          />
         </div>
       </div>
     </div>

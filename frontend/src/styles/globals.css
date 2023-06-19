@@ -51,3 +51,6 @@
 .MuiInputBase-root {
   border-radius: 0 !important;
 }
+.toast-login {
+  @apply mt-10;
+}
